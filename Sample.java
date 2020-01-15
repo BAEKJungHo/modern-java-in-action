@@ -293,4 +293,21 @@ public class Main {
         String reducingMenu2 = menu.stream()
                 .collect(reducing("", DishVo::getName, (s1, s2) -> s1 + s2));
     }
+    
+    /**
+     * 회사 프로세스
+     * 어떤 이름 목록에서, 한 글자로 된 이름을 제외한 모든 이름을 대문자화 해서 쉼표로 연결한 문자열 구현
+     */
+    public String cleanNames(List<String> names) {
+        if(names == null) return "";
+        return names
+                .stream()
+                .filter(name -> name.length() > 1)
+                .map(name -> capitalize(name))
+                .collect(joining(","));
+    }
+    
+    private String capitalize(String e) {
+        return e.substring(0,1).toUpperCase() + e.substring(1, e.length());
+    }
 }
