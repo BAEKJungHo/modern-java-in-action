@@ -293,6 +293,12 @@ public class Main {
 
         String reducingMenu2 = menu.stream()
                 .collect(reducing("", DishVo::getName, (s1, s2) -> s1 + s2));
+        
+        /** toArray(String[]::new) */
+        String[] treeCategories = categoryRepository.findTreeCategories(parent).stream()
+                .filter(category -> categorySeq.equals(category.getCategorySeq()))
+                .map(category -> category.getDepthFullName().split(">"))
+                .toArray(String[]::new);
     }
     
     /**
