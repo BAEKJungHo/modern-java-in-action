@@ -19,8 +19,9 @@ public class Main {
     public static void main(String[] args) {
 
         /**
-         * 추출 : map (특정 객체에서 특정 속성을 추출)
-         * 처리 : filter (조건을 처리)
+         * 필터 : filter
+         * 변형 : map
+         * 변환 : collect, reduce
          */
 
         /**
