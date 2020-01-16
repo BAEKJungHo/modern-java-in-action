@@ -304,6 +304,63 @@ public class Main {
           * 생선, 고기 그 밖의 것들로 그룹화 
           */
         Map<Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
+        
+        /**
+          * 칼로리별로 그룹화
+          */
+
+        Map<CaloricLevel, List<Dish>> dishesByCaloricLevel = menu.stream().collect(
+          groupingBy(dish -> {
+            if(dish.getCalories() <= 400) return CaloricLevel.DIET;
+            else if(dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+            else return CaloricLevel.FAT;
+          }));
+
+        // 500칼로리가 넘는 요리만 타입과 종류로 그룹화
+        Map<Type, List<Dish>> caloricDishesByType = menu.stream().filter(dish -> dish.getCalroies() > 500)
+          .collect(groupingBy(Dish::getType));
+        /**
+          * 결과
+          * {OTHER=[french fries, pizza], MEAT=[pork, beef]}
+          * 위 코드의 단점은 위 filter 프레디케이트를 만족하는 값이 없을 경우 키값 자체가 제외되서 맵에 담지 못한다.
+          * 해결책 : Collectors 클래스의 정적 팩터리 메서드인 filtering 사용
+          */
+
+        // 해결
+        Map<Type, List<Dish>> caloricDishesByType = menu.stream().collect(groupingBy
+          (Dish::getType, filtering(dish -> dish.getCalories() > 500, toList())));
+        // 결과 : {OTHER=[french fries, pizza], MEAT=[pork, beef], FISH=[]}
+
+        /** mapping 사용 */
+        Map<Type, List<String>> dishNamesByType = menu.stream().
+          collect(groupingBy(Dish::getType, mapping(Dish::getName, toList())));
+
+        /** flatMapping 사용 
+          * flatMap은 두 수준의 리스트를 한 수준으로 평면화 할 수 있음 
+          */
+        Map<Type, Set<String>> dishNamesByType = 
+          menu.stream()
+            .collect(groupingBy(Dish::getType, flatMapping(dish -> dishTags.get(dish.getName()).stream(), toSet())));
+
+        /**
+          * 다수준 그룹화 groupingBy 두 번
+          */
+        Map<Type, Map<CaloricLevel, List<Dish>>> dishesByTypeCaloricLevel = 
+            menu.stream().collect(
+                groupingBy(Dish::getType,
+                           groupingBy(dish -> 
+                               if(dish.getCalories() <= 400)
+                                    return CaloricLevel.DIET;
+                               else if(dish.getCalories() <= 700)
+                                    return CaloricLevel.NORMAL;
+                               else return CaloricLevel.FAT;
+                            })
+                  )
+          );
+        /**
+          * 결과
+          * {MEAT={DIET=[chicken], MORMAL=[beef], FAT=[port]}, ...
+          */
     }
     
     /**
