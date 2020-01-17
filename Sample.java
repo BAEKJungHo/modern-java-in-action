@@ -22,7 +22,7 @@ public class Main {
          * 필터 : filter
          * 변형 : map
          * 변환 : collect, reduce
-         * 버킷(bucket) : 
+         * 버킷(bucket) : groupingBy
          */
 
         /**
