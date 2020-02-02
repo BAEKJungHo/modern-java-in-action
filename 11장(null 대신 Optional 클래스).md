@@ -102,3 +102,10 @@ public String getCarInsuarnceName(Optional<Person> person) {
 }
 ```
 
+### orElse와 isPresent
+
+orElse는 값이 없는 경우 디폴트 값을 반환할 수 있으며, isPresent는 Optional이 값을 포함하는지 여부를 알려준다.
+
+## 자바9 Optional 스트림 조작
+
+자바 9에서는 Optional을 포함하는 스트림을 쉽게 처리할 수 있도록 Optional에 stream() 메서드를 추가했다.
