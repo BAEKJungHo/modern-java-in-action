@@ -14,3 +14,10 @@ Optional<String> name = optPerson.map(Person::getCar)
 > 평준화 과정이란 이론적으로 두 Optional을 합치는 기능을 수행하면서 둘 중 하나라도 null이면 빈 Optional을 생성하는 연산이다.
 
 ```java
+public String getCarInsuarnceName(Optional<Person> person) {
+  return person.flatMap(Person::getCar)
+          .flatMap(Car::getInsurance)
+          .map(Insurance::getName)
+          .orElse("Unknown"); // optional이 비어있으면 기본값 사용
+}
+```
