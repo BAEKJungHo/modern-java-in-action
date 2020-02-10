@@ -109,3 +109,15 @@ orElse는 값이 없는 경우 디폴트 값을 반환할 수 있으며, isPrese
 ## 자바9 Optional 스트림 조작
 
 자바 9에서는 Optional을 포함하는 스트림을 쉽게 처리할 수 있도록 Optional에 stream() 메서드를 추가했다.
+
+## 예외와 Optional 클래스
+
+```java
+public static Optional<Integer> stringToInt(String s) {
+  try {
+    return Optional.of(Integer.parseInt(s));
+  } catch(NumberFormatException e) {
+    return Optional.empty();
+  } 
+}
+```
