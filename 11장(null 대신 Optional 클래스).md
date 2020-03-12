@@ -63,7 +63,7 @@ car가 null이라면 NPE가 발생한다. 만약 Optional을 사용하지 않았
 
 ### null값으로 Optional 만들기
 
-정적 팩터리 메서드 Optional.ofNullable로 null갑승ㄹ 저장할 수 있는 Optional을 만들 수 있다.
+정적 팩터리 메서드 Optional.ofNullable로 null 저장할 수 있는 Optional을 만들 수 있다.
 
 ```java
 Optioanl<Car> optCar = Optional.ofNullable(car);
