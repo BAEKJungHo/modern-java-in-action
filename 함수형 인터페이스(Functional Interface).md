@@ -1,6 +1,6 @@
 # 함수형 인터페이스(Functional Interface)
 
-## Runnable
+## `Runnable`
 
 - Inteface
 
@@ -33,7 +33,7 @@ public interface Runnable {
   r.run();
   ```
 
-## Supplier<T>
+## `Supplier<T>`
 
 - Inteface
 
@@ -58,7 +58,7 @@ public interface Supplier<T> {
   String result = s.get();
   ```
   
-## Consumer<T>
+## `Consumer<T>`
 
 - Inteface
 
@@ -100,7 +100,7 @@ public interface Consumer<T> {
   c.accept("hello consumer");
   ```
 
-## Function<T, R>
+## `Function<T, R>`
 
 - Interface
 
@@ -272,7 +272,7 @@ public interface Predicate<T> {
   boolean result = p.test("hello");
   ```
   
-## UnaryOperator<T>  
+## `UnaryOperator<T>`  
 
 - Interface
 
@@ -300,7 +300,7 @@ public interface UnaryOperator<T> extends Function<T, T> {
   String result = u.apply("hello unary");
   ```
   
-## BinaryOperator<T>
+## `BinaryOperator<T>`
 
 - Interface
 
@@ -347,7 +347,7 @@ public interface BinaryOperator<T> extends BiFunction<T,T,T> {
   String result = b.apply("hello", "binary");
   ```
   
-## BiPredicate<T, U>
+## `BiPredicate<T, U>`
 
 - Interface
 
@@ -428,7 +428,7 @@ public interface BiPredicate<T, U> {
   boolean result = bp.test("1", 1);
   ```
 
-## BiConsumer<T, U>
+## `BiConsumer<T, U>`
 
 - Interface
 
@@ -475,7 +475,7 @@ public interface BiConsumer<T, U> {
   bc.accept("숫자", 5);
   ```
 
-## BiFunction<T, U, R>
+## `BiFunction<T, U, R>`
 
 - Interface
 
@@ -520,7 +520,7 @@ public interface BiFunction<T, U, R> {
   String result = bf.apply(5, "678");
   ```
 
-## Comparator<T>
+## `Comparator<T>`
 
 - Interface(생략)
 - 자바의 전통적인 인터페이스 중 하나이다. 객체간 우선순위를 비교할때 사용하는 인터페이스인데 전통적으로 1회성 구현을 많이 하는 인터페이스이다. 람다의 등장으로 Comparator의 구현이 매우 간결해져 Comparable 인터페이스의 실효성이 많이 떨어진듯 하다.
