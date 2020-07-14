@@ -130,3 +130,7 @@ private Product findProductById(Long productId) {
     .orElseThrow(() -> new RuntimeException("해당 제품  ID 는 없는  ID 입니다.");
 }
 ```
+
+## References.
+
+> http://homoefficio.github.io/2019/10/03/Java-Optional-%EB%B0%94%EB%A5%B4%EA%B2%8C-%EC%93%B0%EA%B8%B0/
