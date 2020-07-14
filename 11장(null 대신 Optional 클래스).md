@@ -121,3 +121,12 @@ public static Optional<Integer> stringToInt(String s) {
   } 
 }
 ```
+
+## Optional Code
+
+```java
+private Product findProductById(Long productId) {
+  return Optional.ofNullable(productRepository.findOne(productId)
+    .orElseThrow(() -> new RuntimeException("해당 제품  ID 는 없는  ID 입니다.");
+}
+```
