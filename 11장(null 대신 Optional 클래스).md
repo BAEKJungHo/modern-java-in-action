@@ -131,6 +131,21 @@ private Product findProductById(Long productId) {
 }
 ```
 
+```java
+Optional<Object> objectOptional = Optional.empty();
+
+Object object1 = objectOptional.orElse(new Object());
+Object object2 = objectOptional.orElseGet(() -> new Object());
+Object object3 = objectOptional.orElseGet(Object::new);
+```
+
+```java
+public User findUsers() {
+  Optional<User> userOpt = Optional.of(userRepository.findUsers());
+  return userOpt.get();
+}
+```
+
 ## References.
 
 > http://homoefficio.github.io/2019/10/03/Java-Optional-%EB%B0%94%EB%A5%B4%EA%B2%8C-%EC%93%B0%EA%B8%B0/
