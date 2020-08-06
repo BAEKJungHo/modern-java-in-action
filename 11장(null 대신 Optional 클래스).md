@@ -140,10 +140,21 @@ Object object3 = objectOptional.orElseGet(Object::new);
 ```
 
 ```java
+/**
+ * of 를 사용하는 경우는 null 이 올 수 없다는 것을 명시하는 것이기 때문에
+ * get 으로 꺼내쓰면된다.
+ */
 public User findUsers() {
   Optional<User> userOpt = Optional.of(userRepository.findUsers());
   return userOpt.get();
 }
+```
+
+```java
+Optional<UserVo> userVo = Optional.ofNullable(findUserById(employeeVo));
+Employee employee = new Employee();
+employee.setName(userVo.map(UserVo::getName).orElseGet(() -> ""));
+// employee.setName(userVo.map(UserVo::getName).orElseThrow(() -> new RuntimeException("ID 에 해당하는 유저가 존재하지 않습니다.")));
 ```
 
 ## References.
