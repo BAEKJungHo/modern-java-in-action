@@ -154,7 +154,8 @@ public User findUsers() {
 Optional<UserVo> userVo = Optional.ofNullable(findUserById(employeeVo));
 Employee employee = new Employee();
 employee.setName(userVo.map(UserVo::getName).orElseGet(() -> ""));
-// employee.setName(userVo.map(UserVo::getName).orElseThrow(() -> new RuntimeException("ID 에 해당하는 유저가 존재하지 않습니다.")));
+// employee.setName(userVo.map(UserVo::getName)
+    .orElseThrow(() -> new RuntimeException("ID 에 해당하는 유저가 존재하지 않습니다.")));
 ```
 
 ## References.
