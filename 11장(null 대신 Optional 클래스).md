@@ -158,6 +158,35 @@ employee.setName(userVo.map(UserVo::getName).orElseGet(() -> ""));
     .orElseThrow(() -> new RuntimeException("ID 에 해당하는 유저가 존재하지 않습니다.")));
 ```
 
+### ifPresent
+
+```java
+Member member = memberRepository.findById(id);
+if (member != null) {
+    if (member.isAdmin()) {
+        member.addAdminPermissions();
+    } else {
+        member.addDefaultPermissions();
+    }
+}
+```
+
+null 체크 하는 로직을 optional 을 통해 없애보자.
+
+
+```java
+Optional<Member> memberOptional = memberRepository.findById(id);
+memberOptional.ifPresent(member -> {
+    if (member.isAdmin()) {
+        member.addAdminPermissions();
+    } else {
+        member.addDefaultPermissions();
+    }
+});
+```
+
+null을 확인하던 if 문 대신에 ifPresent 함수를 호출하면서 그 안에 함수를 제공했다. 값이 존재하는 경우에 그 안에 있는 내용을 실행한다고 읽을 수 있으니 null 을 확인하는 if 문을 사용했던 첫번째 예제에 비해 코드량도 조금 줄어들고 가독성도 좋아졌다.
+
 ## References.
 
 > http://homoefficio.github.io/2019/10/03/Java-Optional-%EB%B0%94%EB%A5%B4%EA%B2%8C-%EC%93%B0%EA%B8%B0/
