@@ -395,7 +395,7 @@ public class Main {
      * 일별,월별로 그룹핑 하고, 플래폼(PC, MOBILE)별로 한 번 더 그룹핑
      */
     List<Visitor> visitors = visitorService.findAllVisitorForStatistics(searchVo);
-    Map<String, Map<String, List<Video>>> groupingVisitorsByPlatform = visitors.stream().collect(
+    Map<String, Map<String, List<Visitor>>> groupingVisitorsByPlatform = visitors.stream().collect(
             groupingBy(Visitor::getRegDateForGrouping, groupingBy(Visitor::getPlatform))
     );
 }
