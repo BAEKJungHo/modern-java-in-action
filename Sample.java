@@ -380,4 +380,22 @@ public class Main {
     private String capitalize(String e) {
         return e.substring(0,1).toUpperCase() + e.substring(1, e.length());
     }
+    
+    
+    /**
+     * grouping 1개
+     */
+    List<Video> videos = videoFindService.findAllVideoByPeriod(searchVo);
+    Map<String, List<Video>> groupingVideosByPeriod = videos.stream().collect(
+            groupingBy(Video::getRegDateForGrouping)
+    );
+    
+    /**
+     * grouping 2개
+     * 일별,월별로 그룹핑 하고, 플래폼(PC, MOBILE)별로 한 번 더 그룹핑
+     */
+    List<Visitor> visitors = visitorService.findAllVisitorForStatistics(searchVo);
+    Map<String, Map<String, List<Video>>> groupingVisitorsByPlatform = visitors.stream().collect(
+            groupingBy(Visitor::getRegDateForGrouping, groupingBy(Visitor::getPlatform))
+    );
 }
